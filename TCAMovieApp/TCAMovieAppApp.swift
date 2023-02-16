@@ -11,7 +11,7 @@ import SwiftUI
 struct TCAMovieAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MovieItemView(movie: .testItem)
         }
     }
 }
