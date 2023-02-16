@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		098D6145299EC3D9009553EE /* MoviesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098D6144299EC3D9009553EE /* MoviesListView.swift */; };
+		098D6148299EC89B009553EE /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098D6147299EC89B009553EE /* MovieDetails.swift */; };
+		098D614A299EC91F009553EE /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098D6149299EC91F009553EE /* MovieDetailsView.swift */; };
 		09EF412A299E966900A82AC0 /* TCAMovieAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EF4129299E966900A82AC0 /* TCAMovieAppApp.swift */; };
 		09EF412C299E966900A82AC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EF412B299E966900A82AC0 /* ContentView.swift */; };
 		09EF412E299E966B00A82AC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09EF412D299E966B00A82AC0 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		098D6144299EC3D9009553EE /* MoviesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListView.swift; sourceTree = "<group>"; };
+		098D6147299EC89B009553EE /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
+		098D6149299EC91F009553EE /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		09EF4126299E966900A82AC0 /* TCAMovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCAMovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09EF4129299E966900A82AC0 /* TCAMovieAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAMovieAppApp.swift; sourceTree = "<group>"; };
 		09EF412B299E966900A82AC0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +52,15 @@
 			path = MoviesList;
 			sourceTree = "<group>";
 		};
+		098D6146299EC887009553EE /* MovieDetails */ = {
+			isa = PBXGroup;
+			children = (
+				098D6147299EC89B009553EE /* MovieDetails.swift */,
+				098D6149299EC91F009553EE /* MovieDetailsView.swift */,
+			);
+			path = MovieDetails;
+			sourceTree = "<group>";
+		};
 		09EF411D299E966900A82AC0 = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +80,7 @@
 		09EF4128299E966900A82AC0 /* TCAMovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				098D6146299EC887009553EE /* MovieDetails */,
 				098D6143299EC3CA009553EE /* MoviesList */,
 				09EF413F299E991B00A82AC0 /* MovieItem */,
 				09EF4129299E966900A82AC0 /* TCAMovieAppApp.swift */,
@@ -171,10 +185,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				098D6145299EC3D9009553EE /* MoviesListView.swift in Sources */,
+				098D614A299EC91F009553EE /* MovieDetailsView.swift in Sources */,
 				09EF412C299E966900A82AC0 /* ContentView.swift in Sources */,
 				09EF4143299E992900A82AC0 /* MovieItemView.swift in Sources */,
 				09EF412A299E966900A82AC0 /* TCAMovieAppApp.swift in Sources */,
 				09EF4145299E99A300A82AC0 /* MovieItem.swift in Sources */,
+				098D6148299EC89B009553EE /* MovieDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
