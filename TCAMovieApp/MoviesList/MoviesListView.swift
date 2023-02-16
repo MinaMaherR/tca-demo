@@ -11,11 +11,18 @@ struct MoviesListView: View {
     var movies: [MovieItem]
         
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 0, alignment: .center)]) {
-                ForEach(movies, id: \.id) { movie in
-                    MovieItemView(movie: movie)
-                        .frame(height: 150)
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 0, alignment: .center)]) {
+                    ForEach(movies, id: \.id) { movie in
+                        NavigationLink(
+                            destination: {
+                                MovieDetailsView(movieItem: .testItem())
+                        }, label: {
+                            MovieItemView(movie: movie)
+                                .frame(height: 150)
+                        })
+                    }
                 }
             }
         }
