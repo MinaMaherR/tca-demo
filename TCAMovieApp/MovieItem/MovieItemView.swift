@@ -21,7 +21,7 @@ struct MovieItemView: View {
 struct MovieView_Preview: PreviewProvider {
     static var previews: some View {
         MovieItemView(
-            movie: .testItem
+            movie: .testItem()
         )
     }
 }
