@@ -7,6 +7,20 @@
 
 import Foundation
 
+struct MovieDTO: Decodable {
+    let id: Int
+    let title: String
+    let overview: String
+    let poster_path: String
+    let release_date: String
+    let vote_average: Double
+    let vote_count: Int
+    
+    var movieItem: MovieItem {
+        MovieItem(id: id, name: title, image: poster_path)
+    }
+}
+
 struct MovieItem {
     let id: Int
     let name: String

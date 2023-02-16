@@ -12,6 +12,7 @@
 		098D614A299EC91F009553EE /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098D6149299EC91F009553EE /* MovieDetailsView.swift */; };
 		098D614D299ED258009553EE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098D614C299ED258009553EE /* Constants.swift */; };
 		098D614F299ED2B5009553EE /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098D614E299ED2B5009553EE /* APIClient.swift */; };
+		098D6151299EE0D6009553EE /* MovieListApiRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098D6150299EE0D6009553EE /* MovieListApiRepo.swift */; };
 		09EF412A299E966900A82AC0 /* TCAMovieAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EF4129299E966900A82AC0 /* TCAMovieAppApp.swift */; };
 		09EF412E299E966B00A82AC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09EF412D299E966B00A82AC0 /* Assets.xcassets */; };
 		09EF4131299E966B00A82AC0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09EF4130299E966B00A82AC0 /* Preview Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		098D6149299EC91F009553EE /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
 		098D614C299ED258009553EE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		098D614E299ED2B5009553EE /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		098D6150299EE0D6009553EE /* MovieListApiRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListApiRepo.swift; sourceTree = "<group>"; };
 		09EF4126299E966900A82AC0 /* TCAMovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCAMovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09EF4129299E966900A82AC0 /* TCAMovieAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCAMovieAppApp.swift; sourceTree = "<group>"; };
 		09EF412D299E966B00A82AC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				098D6144299EC3D9009553EE /* MoviesListView.swift */,
+				098D6150299EE0D6009553EE /* MovieListApiRepo.swift */,
 			);
 			path = MoviesList;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				098D6145299EC3D9009553EE /* MoviesListView.swift in Sources */,
+				098D6151299EE0D6009553EE /* MovieListApiRepo.swift in Sources */,
 				098D614A299EC91F009553EE /* MovieDetailsView.swift in Sources */,
 				09EF4143299E992900A82AC0 /* MovieItemView.swift in Sources */,
 				09EF412A299E966900A82AC0 /* TCAMovieAppApp.swift in Sources */,

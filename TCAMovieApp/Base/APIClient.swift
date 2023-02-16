@@ -39,6 +39,15 @@ func apiRequest(method: RequestMethod = .get, path: String, queryItems: [URLQuer
     return data
 }
 
+func pageQueryItem(page: Int) -> URLQueryItem {
+    URLQueryItem(name: "page", value: "\(page)")
+}
+
+func mapdRequest<DTO: Decodable>(decoder: JSONDecoder = JSONDecoder(), data: Data) async throws -> DTO {
+    let decoder = decoder
+    return try decoder.decode(DTO.self, from: data)
+}
+
 func logData(url: URL, data: Data) {
     #if DEBUG
     print("========= URL=========\n\(url.absoluteString)")
