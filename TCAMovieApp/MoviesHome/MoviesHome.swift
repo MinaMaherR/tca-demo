@@ -23,6 +23,7 @@ struct MoviesHome: View {
     @State var nowPlayingMovies: [MovieItem] = []
     @State var upComingMovies: [MovieItem] = []
     @State var currentTab: MovieHomeTab = .nowPlaying
+    @State var error: Error?
     
     var selectedMoviesList: [MovieItem] {
         switch currentTab {
@@ -33,13 +34,24 @@ struct MoviesHome: View {
     
     var body: some View {
         content
-            .task(id: currentTab.rawValue, {
+            .alert(
+                isPresented: Binding(
+                    get: {error != nil},
+                    set: {_ in error = nil}
+                ),content: {
+                   errorAlert
+                }
+            ).task(id: currentTab.rawValue, {
                 do {
                     try await refreshMoviesIfNeeded(for: currentTab)
                 } catch {
-                    print("Error fetching movies: " + error.localizedDescription)
+                    self.error = error
                 }
             })
+    }
+    
+    var errorAlert: Alert {
+        Alert(title: Text("Error"), message: Text(error?.localizedDescription ?? ""))
     }
     
     func refreshMoviesIfNeeded(for tab: MovieHomeTab) async throws -> Void {
