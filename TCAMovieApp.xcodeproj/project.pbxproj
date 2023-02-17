@@ -24,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0903D181299FA4D000BA0A5F /* TMDBApiHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBApiHelper.swift; sourceTree = "<group>"; };
 		098D6144299EC3D9009553EE /* MoviesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListView.swift; sourceTree = "<group>"; };
 		098D6147299EC89B009553EE /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		098D6149299EC91F009553EE /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
