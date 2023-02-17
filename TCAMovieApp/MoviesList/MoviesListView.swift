@@ -9,28 +9,24 @@ import SwiftUI
 
 struct MoviesListView: View {
     var movies: [MovieItem]
-        
+    var movieTapGesture: (MovieItem) -> ()
+    
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 0, alignment: .center)]) {
-                    ForEach(movies, id: \.id) { movie in
-                        NavigationLink(
-                            destination: {
-                                MovieDetailsView(movieItem: movie)
-                        }, label: {
-                            MovieItemView(movie: movie)
-                                .frame(height: 150)
-                        })
-                    }
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 0, alignment: .center)]) {
+                ForEach(movies, id: \.id) { movie in
+                    MovieItemView(movie: movie)
+                        .frame(height: 150)
+                        .onTapGesture { movieTapGesture(movie) }
                 }
             }
         }
+        
     }
 }
 
 struct MoviesListView_Preview: PreviewProvider {
     static var previews: some View {
-        MoviesListView(movies: .testList())
+        MoviesListView(movies: .testList(), movieTapGesture: {_ in})
     }
 }

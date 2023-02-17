@@ -24,6 +24,7 @@ struct MoviesHome: View {
     @State var upComingMovies: [MovieItem] = []
     @State var currentTab: MovieHomeTab = .nowPlaying
     @State var error: Error?
+    @State var selectedMovieItem: MovieItem?
     
     var selectedMoviesList: [MovieItem] {
         switch currentTab {
@@ -32,22 +33,39 @@ struct MoviesHome: View {
         }
     }
     
+    @ViewBuilder
+    var movieDetailsDestination: some View {
+        if let movieItem = selectedMovieItem {
+            MovieDetailsView(movieItem: movieItem)
+        } else {
+            EmptyView()
+        }
+    }
+    
     var body: some View {
-        content
-            .alert(
-                isPresented: Binding(
-                    get: {error != nil},
-                    set: {_ in error = nil}
-                ),content: {
-                   errorAlert
-                }
-            ).task(id: currentTab.rawValue, {
-                do {
-                    try await refreshMoviesIfNeeded(for: currentTab)
-                } catch {
-                    self.error = error
-                }
-            })
+        NavigationView {
+            ZStack {
+                NavigationLink(
+                    isActive: Binding(get: {selectedMovieItem != nil}, set: {_ in selectedMovieItem = nil}),
+                    destination: {movieDetailsDestination}, label: { EmptyView() })
+                
+                content
+                    .alert(
+                        isPresented: Binding(
+                            get: {error != nil},
+                            set: {_ in error = nil}
+                        ),content: {
+                            errorAlert
+                        }
+                    ).task(id: currentTab.rawValue, {
+                        do {
+                            try await refreshMoviesIfNeeded(for: currentTab)
+                        } catch {
+                            self.error = error
+                        }
+                    })
+            }
+        }
     }
     
     var errorAlert: Alert {
@@ -79,7 +97,7 @@ struct MoviesHome: View {
             if selectedMoviesList.isEmpty {
                 LoadingIndicator()
             } else {
-                MoviesListView(movies: selectedMoviesList)
+                MoviesListView(movies: selectedMoviesList, movieTapGesture: {selectedMovieItem = $0})
             }
             
             Spacer()
