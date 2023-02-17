@@ -13,9 +13,14 @@ struct MovieDetailsView: View {
     
     var body: some View {
         content
-            .onAppear {
-                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 2, execute: { movieDetail = .testItem() })
-        }
+            .task {
+                do {
+                    let repo = MovieDetailsApiRepo(mapper: MovieDetailsApiMapper.mapToMovieDetails(data:))
+                    movieDetail = try await repo.apiMovieDetailsData(movieId: movieItem.id)
+                } catch {
+                    print(error)
+                }
+            }
     }
     
     @ViewBuilder

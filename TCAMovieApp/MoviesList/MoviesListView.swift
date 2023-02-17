@@ -17,7 +17,7 @@ struct MoviesListView: View {
                     ForEach(movies, id: \.id) { movie in
                         NavigationLink(
                             destination: {
-                                MovieDetailsView(movieItem: .testItem())
+                                MovieDetailsView(movieItem: movie)
                         }, label: {
                             MovieItemView(movie: movie)
                                 .frame(height: 150)
