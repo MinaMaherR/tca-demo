@@ -17,22 +17,17 @@ struct MovieDetailsView: View {
             .task {
                 do {
                     let repo = MovieDetailsApiRepo(
-                        movieDetailsMapper: MovieDetailsApiMapper.mapToMovieDetails(data:),
-                        castMapper: MovieDetailsCastApiMapper.mapToMovieDetailsCast(data:)
+                        movieDetailsMapper: MovieDetailsApiMapper.mapToMovieDetails(data:)
                     )
-                    
                     movieDetail = try await repo.apiMovieDetailsData(movieId: movieItem.id)
-                    
                 } catch {
                     print(error)
                 }
             }.task {
                 do {
-                    let repo = MovieDetailsApiRepo(
-                        movieDetailsMapper: MovieDetailsApiMapper.mapToMovieDetails(data:),
+                    let repo = MovieDetailsCastApiRepo(
                         castMapper: MovieDetailsCastApiMapper.mapToMovieDetailsCast(data:)
                     )
-                    
                     cast = try await repo.apiMovieCredits(movieId: movieItem.id)
                 } catch {
                     print(error)

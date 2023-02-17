@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Response: Decodable {
+struct MoviesListResponse: Decodable {
     let results: [MovieDTO]
 }
 
@@ -40,7 +40,7 @@ struct MovieListApiRepo {
 
 struct MovieListApiMapper {
     static func mapToMovieItemsList(data: Data) async throws -> [MovieItem] {
-        let response: Response = try await mapdRequest(data: data)
+        let response: MoviesListResponse = try await mapdRequest(data: data)
         return response.results.map(\.movieItem)
     }
 }
