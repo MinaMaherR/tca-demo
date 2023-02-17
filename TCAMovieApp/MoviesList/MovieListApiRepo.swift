@@ -12,6 +12,11 @@ struct Response: Decodable {
 }
 
 struct MovieListApiRepo {
+    enum MovieListPath: String {
+        case nowPlaying = "movie/now_playing"
+        case upComming = "movie/upcoming"
+    }
+    
     var mapper: (_ data: Data) async throws -> [MovieItem]
     
     func nowPlayingQueryItems(page: Int) -> [URLQueryItem] {
@@ -19,8 +24,16 @@ struct MovieListApiRepo {
     }
     
     func apiRequestNowPlayingData(page: Int = 1) async throws -> [MovieItem] {
+        try await apiRequestMovieList(page: page, path: .nowPlaying)
+    }
+    
+    func apiRequestUpCommingData(page: Int = 1) async throws -> [MovieItem] {
+        try await apiRequestMovieList(page: page, path: .upComming)
+    }
+    
+    private func apiRequestMovieList(page: Int, path: MovieListPath) async throws -> [MovieItem] {
         let queryItems = nowPlayingQueryItems(page: page)
-        let data = try await apiRequest(path:"movie/now_playing", queryItems: queryItems)
+        let data = try await apiRequest(path:path.rawValue, queryItems: queryItems)
         return try await mapper(data)
     }
 }
