@@ -12,25 +12,9 @@ struct MovieItemView: View {
     
     var body: some View {
         VStack {
-            image
+            TMDBAsyncImage(path: movie.image)
             Text(movie.name)
         }
-    }
-    
-    @ViewBuilder
-    var image: some View {
-        let url = try? TMDBAPIHelper.constructImageUrl(size: .list, path: movie.image)
-        
-        AsyncImage(
-            url: url,
-            content: { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-            }, placeholder: {
-                ProgressView()
-            }
-        )
     }
 }
 

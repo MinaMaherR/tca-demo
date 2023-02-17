@@ -23,9 +23,7 @@ struct MovieDetailsView: View {
         if let movieDetail = movieDetail {
             VStack {
                 ZStack(alignment: .bottomLeading) {
-                    Image(systemName: movieDetail.image)
-                        .resizable()
-                        .scaledToFit()
+                    TMDBAsyncImage(path: movieDetail.image)
                         .frame(maxWidth: .infinity, maxHeight: 150)
                     ZStack(alignment: .leading) {
                         Color.cyan.opacity(0.8)
