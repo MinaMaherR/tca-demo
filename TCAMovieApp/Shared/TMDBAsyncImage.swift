@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct TMDBAsyncImage: View {
+    enum ScallType {
+        case fit
+        case fill
+    }
+    
     let path: String
+    var size: TMDBAPIHelper.TMDBImageSize = .list
+    var scallType: ScallType = .fit
     
     var body: some View {
         let url = try? TMDBAPIHelper.constructImageUrl(size: .list, path: path)
@@ -16,9 +23,16 @@ struct TMDBAsyncImage: View {
         AsyncImage(
             url: url,
             content: { image in
-                image
-                    .resizable()
-                    .scaledToFit()
+                switch scallType {
+                case .fit:
+                    image
+                        .resizable()
+                        .scaledToFit()
+                case .fill:
+                    image
+                        .resizable()
+                        .scaledToFill()
+                }
             }, placeholder: {
                 ProgressView()
             }

@@ -10,13 +10,30 @@ import SwiftUI
 struct MovieDetailsView: View {
     let movieItem: MovieItem
     @State var movieDetail: MovieDetails?
+    @State var cast: [Cast]?
     
     var body: some View {
         content
             .task {
                 do {
-                    let repo = MovieDetailsApiRepo(mapper: MovieDetailsApiMapper.mapToMovieDetails(data:))
+                    let repo = MovieDetailsApiRepo(
+                        movieDetailsMapper: MovieDetailsApiMapper.mapToMovieDetails(data:),
+                        castMapper: MovieDetailsCastApiMapper.mapToMovieDetailsCast(data:)
+                    )
+                    
                     movieDetail = try await repo.apiMovieDetailsData(movieId: movieItem.id)
+                    
+                } catch {
+                    print(error)
+                }
+            }.task {
+                do {
+                    let repo = MovieDetailsApiRepo(
+                        movieDetailsMapper: MovieDetailsApiMapper.mapToMovieDetails(data:),
+                        castMapper: MovieDetailsCastApiMapper.mapToMovieDetailsCast(data:)
+                    )
+                    
+                    cast = try await repo.apiMovieCredits(movieId: movieItem.id)
                 } catch {
                     print(error)
                 }
@@ -43,20 +60,42 @@ struct MovieDetailsView: View {
                 }.padding(.horizontal, 16)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                ScrollView(.horizontal) {
-                    LazyHStack(alignment: .top) {
-                        ForEach(movieDetail.cast, id: \.self) { cast in
-                            Text(cast)
-                                .frame(width: 70, height: 70)
-                                .background(Color.brown)
-                                .clipShape(Circle())
-                                
-                        }.background(Color.white)
-                    }.padding(16)
-                }
+                castView
             }
         } else {
             LoadingIndicator()
+        }
+    }
+    
+    @ViewBuilder
+    var castView: some View {
+        ScrollView(.horizontal) {
+            LazyHStack(alignment: .top) {
+                if let cast = cast {
+                    castForEach(cast: cast)
+                } else {
+                    castForEach(cast: .testItems())
+                        .redacted(reason: .placeholder)
+                }
+            }.padding(16)
+        }
+    }
+    
+    @ViewBuilder
+    func castForEach(cast: [Cast]) -> some View {
+        ForEach(cast, id: \.name) { cast in
+            if let profile = cast.profile {
+                TMDBAsyncImage(path: profile, scallType: .fill)
+                    .frame(width: 70, height: 70)
+                    .background(Color.brown)
+                    .clipShape(Circle())
+            } else {
+                Text(cast.name)
+                    .font(.system(size: 14))
+                    .frame(width: 70, height: 70)
+                    .background(Color.brown)
+                    .clipShape(Circle())
+            }
         }
     }
 }
