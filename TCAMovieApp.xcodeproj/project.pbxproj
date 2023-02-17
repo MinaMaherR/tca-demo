@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0903D180299FA22900BA0A5F /* MoviesHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903D17F299FA22900BA0A5F /* MoviesHome.swift */; };
+		0903D182299FA4D000BA0A5F /* TMDBApiHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0903D181299FA4D000BA0A5F /* TMDBApiHelper.swift */; };
 		098D6145299EC3D9009553EE /* MoviesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098D6144299EC3D9009553EE /* MoviesListView.swift */; };
 		098D6148299EC89B009553EE /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098D6147299EC89B009553EE /* MovieDetails.swift */; };
 		098D614A299EC91F009553EE /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098D6149299EC91F009553EE /* MovieDetailsView.swift */; };
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				098D614C299ED258009553EE /* Constants.swift */,
+				0903D181299FA4D000BA0A5F /* TMDBApiHelper.swift */,
 				098D614E299ED2B5009553EE /* APIClient.swift */,
 			);
 			path = Base;
@@ -201,6 +204,7 @@
 				098D6145299EC3D9009553EE /* MoviesListView.swift in Sources */,
 				098D6151299EE0D6009553EE /* MovieListApiRepo.swift in Sources */,
 				098D614A299EC91F009553EE /* MovieDetailsView.swift in Sources */,
+				0903D182299FA4D000BA0A5F /* TMDBApiHelper.swift in Sources */,
 				09EF4143299E992900A82AC0 /* MovieItemView.swift in Sources */,
 				09EF412A299E966900A82AC0 /* TCAMovieAppApp.swift in Sources */,
 				09EF4145299E99A300A82AC0 /* MovieItem.swift in Sources */,
