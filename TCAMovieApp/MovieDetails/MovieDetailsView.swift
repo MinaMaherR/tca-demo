@@ -56,10 +56,7 @@ struct MovieDetailsView: View {
                 }
             }
         } else {
-            VStack {
-                ProgressView()
-                Text("Loading ...")
-            }
+            LoadingIndicator()
         }
     }
 }
