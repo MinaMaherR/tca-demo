@@ -8,28 +8,81 @@
 import SwiftUI
 
 struct MoviesHome: View {
-    @State var movies: [MovieItem] = []
+    enum MovieHomeTab: Int {
+        case nowPlaying = 1
+        case upComming
+        
+        var title: String {
+            switch self {
+            case .nowPlaying: return "Now Playing"
+            case .upComming: return "Upcomming"
+            }
+        }
+    }
+    
+    @State var nowPlayingMovies: [MovieItem] = []
+    @State var upComingMovies: [MovieItem] = []
+    @State var currentTab: MovieHomeTab = .nowPlaying
+    
+    var selectedMoviesList: [MovieItem] {
+        switch currentTab {
+        case .nowPlaying: return nowPlayingMovies
+        case .upComming: return upComingMovies
+        }
+    }
     
     var body: some View {
         content
-            .task {
-                let moviesRepo = MovieListApiRepo(mapper: MovieListApiMapper.mapToMovieItemsList(data:))
+            .task(id: currentTab.rawValue, {
                 do {
-                    let nowPlaying = try await moviesRepo.apiRequestNowPlayingData()
-                    movies = nowPlaying
+                    try await refreshMoviesIfNeeded(for: currentTab)
                 } catch {
                     print("Error fetching movies: " + error.localizedDescription)
                 }
-            }
+            })
+    }
+    
+    func refreshMoviesIfNeeded(for tab: MovieHomeTab) async throws -> Void {
+        let moviesRepo = MovieListApiRepo(mapper: MovieListApiMapper.mapToMovieItemsList(data:))
+        switch tab {
+        case .nowPlaying:
+            guard nowPlayingMovies.isEmpty else {return}
+            let nowPlaying = try await moviesRepo.apiRequestNowPlayingData()
+            nowPlayingMovies = nowPlaying
+        case .upComming:
+            guard upComingMovies.isEmpty else {return}
+            let comming = try await moviesRepo.apiRequestUpCommingData()
+            upComingMovies = comming
+        }
     }
     
     @ViewBuilder
     var content: some View {
-        if movies.isEmpty {
+        VStack {
+            Picker("Movies", selection: $currentTab) {
+                tabs
+            }.pickerStyle(.segmented)
+            .padding(16)
             
-        } else {
-            MoviesListView(movies: movies)
+            if selectedMoviesList.isEmpty {
+                LoadingIndicator()
+            } else {
+                MoviesListView(movies: selectedMoviesList)
+            }
+            
+            Spacer()
         }
+    }
+    
+    var tabs: some View {
+        Group {
+            tabTitle(tab: .nowPlaying)
+            tabTitle(tab: .upComming)
+        }
+    }
+    
+    func tabTitle(tab: MovieHomeTab) -> some View {
+        Text(tab.title).tag(tab)
     }
 }
 
